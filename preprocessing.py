@@ -172,6 +172,7 @@ class preprocessing(object):
 
 
 if __name__ == "__main__":
+    """
     a = preprocessing()
     data_dir = './Nottingham/all/'
     dataset = []
@@ -179,14 +180,34 @@ if __name__ == "__main__":
         print(file)
         seq = a.parsing(data_dir+file)
         dataset.append(seq)
-
+    
     with open('dataset', 'wb') as fp:
         pickle.dump(dataset, fp)
+    """
+
+
 
     # to load dataset
-    # with open('outfile', 'rb') as fp:
-    #     itemlist = pickle.load(fp)
+    with open('dataset3', 'rb') as fp:
+        data_fr = pickle.load(fp)
+        data_str = []
+        for i in data_fr:
+            song = []
+            for j in i:
+                pattern = "%.1f"
+                song.append([pattern % k for k in j])
+            data_str.append(song)
 
+        data2 = []
+        for i in data_str:
+            song2 = []
+            for j in i:
+                song2.append(list(map(float, j)))
+            data2.append(song2)
+
+        with open('dataset2', 'wb') as fp:
+            pickle.dump(data2, fp, protocol=2)
+        print('done!')
         """
         print('notes: ', a.notes)
         print('note_octaves: ', a.note_octaves)
