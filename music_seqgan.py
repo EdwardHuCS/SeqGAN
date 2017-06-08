@@ -39,9 +39,9 @@ vocab_size = 3841
 # positive data, containing real music sequences
 positive_file = 'dataset/train'
 # negative data from the generator, containing fake sequences
-negative_file = 'dataset_20_negative'
+negative_file = 'dataset/train_negative'
 valid_file = 'dataset/valid'
-generated_num = 10000
+generated_num = 4000
 
 epochs_generator = 1
 epochs_discriminator = 5
