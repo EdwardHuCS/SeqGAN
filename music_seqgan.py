@@ -8,7 +8,7 @@ from rollout import ROLLOUT
 import cPickle
 import os
 from nltk.translate.bleu_score import corpus_bleu
-os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 #########################################################################################
 #  Generator  Hyper-parameters
