@@ -92,7 +92,8 @@ def calculate_bleu(sess, trainable_model, data_loader):
     for it in xrange(data_loader.num_batch):
         batch =data_loader.next_batch()
         # predict from the batch
-        prediction = trainable_model.predict(sess, batch)
+        start_tokens = batch[:, 0]
+        prediction = trainable_model.predict(sess, batch, start_tokens)
         # argmax to convert to vocab
         prediction = np.argmax(prediction, axis=2)
 
@@ -148,8 +149,7 @@ def main():
 
     print 'Start pre-training discriminator...'
     # Train 3 epoch on the generated data and do this for 50 times
-    for epochs in range(1):
-    # for epochs in range(50):
+    for epochs in range(50):
         generate_samples(sess, generator, BATCH_SIZE, generated_num, negative_file)
         dis_data_loader.load_train_data(positive_file, negative_file)
         D_loss = 0
