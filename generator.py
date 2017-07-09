@@ -21,7 +21,11 @@ class Generator(object):
         self.expected_reward = tf.Variable(tf.zeros([self.sequence_length]))
 
         with tf.variable_scope('generator'):
-            self.g_embeddings = tf.Variable(self.init_matrix([self.num_emb, self.emb_dim])) # embedding matrix
+
+            # replace this embedding matrix to 1dcnn
+            # output dimension should be the same [num_eb, emb_dim]
+            # self.g_embeddings = tf.Variable(self.init_matrix([self.num_emb, self.emb_dim])) # embedding matrix
+
             self.g_params.append(self.g_embeddings)
             self.g_recurrent_unit = self.create_recurrent_unit(self.g_params)  # maps h_tm1 to h_t for generator
             self.g_output_unit = self.create_output_unit(self.g_params)  # maps h_t to o_t (output token logits)
